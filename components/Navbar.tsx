@@ -106,8 +106,6 @@ export default function Navbar() {
       {/* Mobile Menu Overlay */}
       {/* Mobile Menu Overlay - Full Screen Premium Style */}
       <AnimatePresence>
-      {/* Mobile Menu Overlay - Ultra Modern */}
-      <AnimatePresence>
         {isMobileMenuOpen && (
           <motion.div
             initial={{ opacity: 0 }}
@@ -130,22 +128,21 @@ export default function Navbar() {
               <X size={24} />
             </motion.button>
 
-            <div className="w-full max-w-sm px-6 flex flex-col items-center gap-10 relative z-10">
+            <div className="w-full max-w-sm px-6 flex flex-col items-center gap-6 relative z-10 pb-24">
                {/* Logo in Menu */}
                <motion.div
                   initial={{ y: -30, opacity: 0 }}
                   animate={{ y: 0, opacity: 1 }}
                   transition={{ delay: 0.1 }}
-                  className="mb-4"
                >
                  <img 
                     src="/img/logo.png" 
                     alt="Logo" 
-                    className="h-20 w-auto invert brightness-0 opacity-100 drop-shadow-lg"
+                    className="h-16 w-auto invert brightness-0 opacity-100 drop-shadow-lg"
                  />
                </motion.div>
 
-              <nav className="flex flex-col items-center gap-6 w-full">
+              <nav className="flex flex-col items-center gap-4 w-full">
                 {SITE_CONFIG.layout.navbar.links.map((link, index) => (
                   <motion.div
                     key={link.path}
@@ -158,7 +155,7 @@ export default function Navbar() {
                       href={link.path}
                       onClick={() => setIsMobileMenuOpen(false)}
                       className={clsx(
-                        "text-3xl font-bold block py-2 transition-all duration-300 hover:scale-110",
+                        "text-2xl font-bold block py-2 transition-all duration-300 hover:scale-110",
                         pathname === link.path 
                           ? "text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-300" 
                           : "text-white/70 hover:text-white"
@@ -174,31 +171,30 @@ export default function Navbar() {
                 initial={{ opacity: 0, y: 50 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.5 }}
-                className="w-full space-y-6"
+                className="w-full space-y-4 mt-4"
               >
                  <a
                   href={SITE_CONFIG.sections.hero.cta.path}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-full flex items-center justify-center gap-3 bg-white text-slate-900 rounded-2xl py-4 text-lg font-bold shadow-xl hover:shadow-2xl hover:scale-105 active:scale-95 transition-all"
+                  className="w-full flex items-center justify-center gap-3 bg-white text-slate-900 rounded-2xl py-3 text-base font-bold shadow-xl hover:shadow-2xl hover:scale-105 active:scale-95 transition-all"
                 >
                   <span>Fale Conosco</span>
                 </a>
 
-                <div className="flex justify-center gap-6 pt-4 border-t border-white/10">
-                    <span className="text-white/40 text-sm font-medium">Siga-nos</span>
+                <div className="flex justify-center gap-4 pt-3 border-t border-white/10">
+                    <span className="text-white/40 text-xs font-medium">Siga-nos</span>
                     {/* Fake Social Icons for visual balance */}
-                    <div className="flex gap-4">
-                       <div className="w-2 h-2 rounded-full bg-blue-500 animate-pulse" />
-                       <div className="w-2 h-2 rounded-full bg-cyan-500 animate-pulse delay-75" />
-                       <div className="w-2 h-2 rounded-full bg-white/50 animate-pulse delay-150" />
+                    <div className="flex gap-3">
+                       <div className="w-1.5 h-1.5 rounded-full bg-blue-500 animate-pulse" />
+                       <div className="w-1.5 h-1.5 rounded-full bg-cyan-500 animate-pulse delay-75" />
+                       <div className="w-1.5 h-1.5 rounded-full bg-white/50 animate-pulse delay-150" />
                     </div>
                 </div>
               </motion.div>
             </div>
           </motion.div>
         )}
-      </AnimatePresence>
       </AnimatePresence>
     </header>
   );
