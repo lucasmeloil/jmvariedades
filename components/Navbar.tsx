@@ -37,12 +37,19 @@ export default function Navbar() {
     <header
       className={clsx(
         "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
-        isScrolled
+        isMobileMenuOpen
+          ? "bg-transparent py-4" // Force transparent when open
+          : isScrolled
           ? "bg-white/90 backdrop-blur-md shadow-sm py-4"
           : "bg-transparent py-6"
       )}
     >
-      <div className="container mx-auto px-4 flex items-center justify-between">
+      <div 
+        className={clsx(
+          "container mx-auto px-4 flex items-center justify-between transition-opacity duration-300",
+          isMobileMenuOpen ? "opacity-0 pointer-events-none" : "opacity-100"
+        )}
+      >
         <Link href="/" className="flex items-center gap-2">
           <img
             src="/img/logo.png"
