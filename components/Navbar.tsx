@@ -84,26 +84,62 @@ export default function Navbar() {
       </div>
 
       {/* Mobile Menu Dropdown (different from fixed bottom menu) */}
+      {/* Mobile Menu Overlay */}
       <AnimatePresence>
         {isMobileMenuOpen && (
           <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto" }}
-            exit={{ opacity: 0, height: 0 }}
-            className="md:hidden bg-white border-t border-gray-100 overflow-hidden"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-40 bg-black/50 backdrop-blur-sm md:hidden"
+            onClick={() => setIsMobileMenuOpen(false)}
           >
-            <div className="container mx-auto px-4 py-4 flex flex-col gap-4">
-              {SITE_CONFIG.layout.navbar.links.map((link) => (
-                <Link
-                  key={link.path}
-                  href={link.path}
-                  onClick={() => setIsMobileMenuOpen(false)}
-                  className="text-lg font-medium text-foreground py-2 border-b border-gray-50 last:border-0"
+            <motion.div
+              initial={{ x: "100%" }}
+              animate={{ x: 0 }}
+              exit={{ x: "100%" }}
+              transition={{ type: "spring", damping: 25, stiffness: 200 }}
+              onClick={(e) => e.stopPropagation()}
+              className="absolute right-0 top-0 bottom-0 w-[80%] max-w-sm bg-white shadow-2xl p-6 flex flex-col pt-24"
+            >
+              <div className="flex flex-col gap-6">
+                {SITE_CONFIG.layout.navbar.links.map((link, index) => (
+                  <motion.div
+                    key={link.path}
+                    initial={{ opacity: 0, x: 20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: index * 0.1 + 0.2 }}
+                  >
+                    <Link
+                      href={link.path}
+                      onClick={() => setIsMobileMenuOpen(false)}
+                      className={clsx(
+                        "text-xl font-bold block py-2 border-b border-gray-100",
+                        pathname === link.path ? "text-blue-600" : "text-slate-800"
+                      )}
+                    >
+                      {link.label}
+                    </Link>
+                  </motion.div>
+                ))}
+                
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.5 }}
+                  className="mt-4"
                 >
-                  {link.label}
-                </Link>
-              ))}
-            </div>
+                   <a
+                    href={SITE_CONFIG.sections.hero.cta.path}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-full block text-center bg-gradient-to-r from-blue-600 to-cyan-500 text-white rounded-xl py-4 font-bold shadow-lg shadow-blue-500/30"
+                  >
+                    Fale Conosco
+                  </a>
+                </motion.div>
+              </div>
+            </motion.div>
           </motion.div>
         )}
       </AnimatePresence>

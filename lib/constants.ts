@@ -75,9 +75,9 @@ export const SITE_CONFIG = {
 export const HERO_SLIDES = [
   {
     id: 1,
-    image: "https://images.unsplash.com/photo-1588691653147-9195b0451acc?q=80&w=2070&auto=format&fit=crop", // View reminiscent of Arraial d'Ajuda
-    title: "Verão em Arraial d'Ajuda",
-    subtitle: "Tudo o que você precisa para curtir a praia",
+    image: "https://upload.wikimedia.org/wikipedia/commons/2/23/Igreja_Matriz_Nossa_Senhora_D%27Ajuda_-_Arraial_d%27Ajuda_2021.jpg",
+    title: "Igreja de Arraial d'Ajuda",
+    subtitle: "Conheça o charme histórico da nossa região",
   },
   {
     id: 2,
