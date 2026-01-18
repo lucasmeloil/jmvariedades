@@ -106,74 +106,99 @@ export default function Navbar() {
       {/* Mobile Menu Overlay */}
       {/* Mobile Menu Overlay - Full Screen Premium Style */}
       <AnimatePresence>
+      {/* Mobile Menu Overlay - Ultra Modern */}
+      <AnimatePresence>
         {isMobileMenuOpen && (
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.3 }}
-            className="fixed inset-0 z-40 bg-slate-900/95 backdrop-blur-md md:hidden flex items-center justify-center"
+            className="fixed inset-0 z-[100] bg-gradient-to-b from-slate-900/98 to-blue-900/98 backdrop-blur-xl md:hidden flex flex-col items-center justify-center overflow-hidden"
           >
-            {/* Close Button absolute positioned */}
-            <button
-              className="absolute top-6 right-6 text-white/80 hover:text-white p-2 rounded-full hover:bg-white/10 transition-colors"
+            {/* Background Decorations */}
+            <div className="absolute top-0 left-0 w-64 h-64 bg-blue-500/20 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2 pointer-events-none" />
+            <div className="absolute bottom-0 right-0 w-80 h-80 bg-cyan-500/10 rounded-full blur-3xl translate-x-1/3 translate-y-1/3 pointer-events-none" />
+
+            {/* Close Button */}
+            <motion.button
+              initial={{ scale: 0, rotate: -90 }}
+              animate={{ scale: 1, rotate: 0 }}
+              className="absolute top-6 right-6 text-white p-3 rounded-full bg-white/10 hover:bg-white/20 transition-all border border-white/10"
               onClick={() => setIsMobileMenuOpen(false)}
             >
-              <X size={32} />
-            </button>
+              <X size={24} />
+            </motion.button>
 
-            <div className="w-full max-w-md px-6 flex flex-col items-center gap-8">
+            <div className="w-full max-w-sm px-6 flex flex-col items-center gap-10 relative z-10">
                {/* Logo in Menu */}
-               <motion.img 
-                  initial={{ y: -20, opacity: 0 }}
+               <motion.div
+                  initial={{ y: -30, opacity: 0 }}
                   animate={{ y: 0, opacity: 1 }}
                   transition={{ delay: 0.1 }}
-                  src="/img/logo.png" 
-                  alt="Logo" 
-                  className="h-16 w-auto mb-4 invert brightness-0 opacity-90"
-               />
+                  className="mb-4"
+               >
+                 <img 
+                    src="/img/logo.png" 
+                    alt="Logo" 
+                    className="h-20 w-auto invert brightness-0 opacity-100 drop-shadow-lg"
+                 />
+               </motion.div>
 
-              <div className="flex flex-col items-center gap-6 w-full">
+              <nav className="flex flex-col items-center gap-6 w-full">
                 {SITE_CONFIG.layout.navbar.links.map((link, index) => (
                   <motion.div
                     key={link.path}
-                    initial={{ opacity: 0, y: 30 }}
-                    animate={{ opacity: 1, y: 0 }}
+                    initial={{ opacity: 0, x: -50 }}
+                    animate={{ opacity: 1, x: 0 }}
                     transition={{ delay: index * 0.1 + 0.2, type: "spring", stiffness: 100 }}
-                    className="w-full"
+                    className="w-full text-center"
                   >
                     <Link
                       href={link.path}
                       onClick={() => setIsMobileMenuOpen(false)}
                       className={clsx(
-                        "text-3xl font-bold block text-center py-2 transition-colors",
-                        pathname === link.path ? "text-blue-400" : "text-white/80 hover:text-white"
+                        "text-3xl font-bold block py-2 transition-all duration-300 hover:scale-110",
+                        pathname === link.path 
+                          ? "text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-300" 
+                          : "text-white/70 hover:text-white"
                       )}
                     >
                       {link.label}
                     </Link>
                   </motion.div>
                 ))}
+              </nav>
                 
-                <motion.div
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ delay: 0.5 }}
-                  className="mt-8 w-full"
+              <motion.div
+                initial={{ opacity: 0, y: 50 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.5 }}
+                className="w-full space-y-6"
+              >
+                 <a
+                  href={SITE_CONFIG.sections.hero.cta.path}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-full flex items-center justify-center gap-3 bg-white text-slate-900 rounded-2xl py-4 text-lg font-bold shadow-xl hover:shadow-2xl hover:scale-105 active:scale-95 transition-all"
                 >
-                   <a
-                    href={SITE_CONFIG.sections.hero.cta.path}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="w-full block text-center bg-white text-slate-900 rounded-full py-4 text-lg font-bold shadow-xl hover:scale-105 transition-transform"
-                  >
-                    Fale Conosco
-                  </a>
-                </motion.div>
-              </div>
+                  <span>Fale Conosco</span>
+                </a>
+
+                <div className="flex justify-center gap-6 pt-4 border-t border-white/10">
+                    <span className="text-white/40 text-sm font-medium">Siga-nos</span>
+                    {/* Fake Social Icons for visual balance */}
+                    <div className="flex gap-4">
+                       <div className="w-2 h-2 rounded-full bg-blue-500 animate-pulse" />
+                       <div className="w-2 h-2 rounded-full bg-cyan-500 animate-pulse delay-75" />
+                       <div className="w-2 h-2 rounded-full bg-white/50 animate-pulse delay-150" />
+                    </div>
+                </div>
+              </motion.div>
             </div>
           </motion.div>
         )}
+      </AnimatePresence>
       </AnimatePresence>
     </header>
   );
