@@ -75,15 +75,15 @@ export const SITE_CONFIG = {
 export const HERO_SLIDES = [
   {
     id: 1,
-    image: "https://upload.wikimedia.org/wikipedia/commons/2/23/Igreja_Matriz_Nossa_Senhora_D%27Ajuda_-_Arraial_d%27Ajuda_2021.jpg",
+    image: "/img/arraial_igreja.jpg",
     title: "Igreja de Arraial d'Ajuda",
-    subtitle: "Conheça o charme histórico da nossa região",
+    subtitle: "O cartão postal mais charmoso da Bahia",
   },
   {
     id: 2,
-    image: "https://images.unsplash.com/photo-1598135764024-5fa7bca22405?q=80&w=2070&auto=format&fit=crop",
-    title: "Porto Seguro te Espera",
-    subtitle: "Acessórios e novidades para suas férias",
+    image: "/img/arraial_praia.jpg",
+    title: "Praias Paradisíacas",
+    subtitle: "A beleza natural que encanta o mundo",
   },
   {
     id: 3,

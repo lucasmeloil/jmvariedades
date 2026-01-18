@@ -85,37 +85,50 @@ export default function Navbar() {
 
       {/* Mobile Menu Dropdown (different from fixed bottom menu) */}
       {/* Mobile Menu Overlay */}
+      {/* Mobile Menu Overlay - Full Screen Premium Style */}
       <AnimatePresence>
         {isMobileMenuOpen && (
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-40 bg-black/50 backdrop-blur-sm md:hidden"
-            onClick={() => setIsMobileMenuOpen(false)}
+            transition={{ duration: 0.3 }}
+            className="fixed inset-0 z-40 bg-slate-900/95 backdrop-blur-md md:hidden flex items-center justify-center"
           >
-            <motion.div
-              initial={{ x: "100%" }}
-              animate={{ x: 0 }}
-              exit={{ x: "100%" }}
-              transition={{ type: "spring", damping: 25, stiffness: 200 }}
-              onClick={(e) => e.stopPropagation()}
-              className="absolute right-0 top-0 bottom-0 w-[80%] max-w-sm bg-white shadow-2xl p-6 flex flex-col pt-24"
+            {/* Close Button absolute positioned */}
+            <button
+              className="absolute top-6 right-6 text-white/80 hover:text-white p-2 rounded-full hover:bg-white/10 transition-colors"
+              onClick={() => setIsMobileMenuOpen(false)}
             >
-              <div className="flex flex-col gap-6">
+              <X size={32} />
+            </button>
+
+            <div className="w-full max-w-md px-6 flex flex-col items-center gap-8">
+               {/* Logo in Menu */}
+               <motion.img 
+                  initial={{ y: -20, opacity: 0 }}
+                  animate={{ y: 0, opacity: 1 }}
+                  transition={{ delay: 0.1 }}
+                  src="/img/logo.png" 
+                  alt="Logo" 
+                  className="h-16 w-auto mb-4 invert brightness-0 opacity-90"
+               />
+
+              <div className="flex flex-col items-center gap-6 w-full">
                 {SITE_CONFIG.layout.navbar.links.map((link, index) => (
                   <motion.div
                     key={link.path}
-                    initial={{ opacity: 0, x: 20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: index * 0.1 + 0.2 }}
+                    initial={{ opacity: 0, y: 30 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: index * 0.1 + 0.2, type: "spring", stiffness: 100 }}
+                    className="w-full"
                   >
                     <Link
                       href={link.path}
                       onClick={() => setIsMobileMenuOpen(false)}
                       className={clsx(
-                        "text-xl font-bold block py-2 border-b border-gray-100",
-                        pathname === link.path ? "text-blue-600" : "text-slate-800"
+                        "text-3xl font-bold block text-center py-2 transition-colors",
+                        pathname === link.path ? "text-blue-400" : "text-white/80 hover:text-white"
                       )}
                     >
                       {link.label}
@@ -124,22 +137,22 @@ export default function Navbar() {
                 ))}
                 
                 <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  animate={{ opacity: 1, scale: 1 }}
                   transition={{ delay: 0.5 }}
-                  className="mt-4"
+                  className="mt-8 w-full"
                 >
                    <a
                     href={SITE_CONFIG.sections.hero.cta.path}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-full block text-center bg-gradient-to-r from-blue-600 to-cyan-500 text-white rounded-xl py-4 font-bold shadow-lg shadow-blue-500/30"
+                    className="w-full block text-center bg-white text-slate-900 rounded-full py-4 text-lg font-bold shadow-xl hover:scale-105 transition-transform"
                   >
                     Fale Conosco
                   </a>
                 </motion.div>
               </div>
-            </motion.div>
+            </div>
           </motion.div>
         )}
       </AnimatePresence>
