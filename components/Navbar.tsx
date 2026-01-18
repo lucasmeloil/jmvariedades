@@ -155,10 +155,10 @@ export default function Navbar() {
                       href={link.path}
                       onClick={() => setIsMobileMenuOpen(false)}
                       className={clsx(
-                        "text-2xl font-bold block py-2 transition-all duration-300 hover:scale-110",
+                        "text-2xl font-bold block py-3 px-6 rounded-xl transition-all duration-300 hover:scale-105",
                         pathname === link.path 
-                          ? "text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-300" 
-                          : "text-white/70 hover:text-white"
+                          ? "text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-300 bg-white/10 border-2 border-blue-400/50 shadow-lg" 
+                          : "text-white/70 hover:text-white hover:bg-white/5"
                       )}
                     >
                       {link.label}
