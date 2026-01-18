@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { SITE_CONFIG, HERO_SLIDES } from "@/lib/constants";
 import { ArrowRight, ShoppingBag, ChevronLeft, ChevronRight } from "lucide-react";
+import Image from "next/image";
 
 export default function Hero() {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -24,27 +25,32 @@ export default function Hero() {
   };
 
   return (
+  return (
     <section className="relative min-h-[100vh] flex items-center overflow-hidden bg-slate-900">
-      <AnimatePresence mode="wait">
-        <motion.div
-           key={currentSlide}
-           initial={{ opacity: 0 }}
-           animate={{ opacity: 1 }}
-           exit={{ opacity: 0 }}
-           transition={{ duration: 1 }}
-           className="absolute inset-0 z-0"
-        >
-          {/* Overlay gradient */}
-           <div className="absolute inset-0 bg-black/40 z-10" />
-           <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/30 to-transparent z-10" />
-           
-           <img 
-             src={HERO_SLIDES[currentSlide].image} 
-             alt={HERO_SLIDES[currentSlide].title}
-             className="w-full h-full object-cover"
-           />
-        </motion.div>
-      </AnimatePresence>
+      {/* Background Slides - Pre-rendered for instant switching */}
+      <div className="absolute inset-0 z-0">
+        <div className="absolute inset-0 bg-black/40 z-10" />
+        <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/30 to-transparent z-10" />
+        
+        {HERO_SLIDES.map((slide, index) => (
+          <motion.div
+            key={slide.id}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: currentSlide === index ? 1 : 0 }}
+            transition={{ duration: 1 }}
+            className="absolute inset-0"
+          >
+            <Image
+              src={slide.image}
+              alt={slide.title}
+              fill
+              className="object-cover"
+              priority={index === 0} // Priority load the first image
+              quality={90}
+            />
+          </motion.div>
+        ))}
+      </div>
 
       <div className="container mx-auto px-4 relative z-20 grid md:grid-cols-2 gap-12 items-center pt-20">
         <div className="space-y-6 text-center md:text-left text-white">
