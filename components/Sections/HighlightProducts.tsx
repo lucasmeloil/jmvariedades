@@ -95,9 +95,10 @@ export default function HighlightProducts() {
                     href={`${SITE_CONFIG.sections.highlightProducts.ctaRedirect}?text=Olá! Tenho interesse no ${product.nome} de ${product.preco}`}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-sm font-medium text-primary hover:underline hover:text-blue-700"
+                    className="px-4 py-2 bg-green-500 hover:bg-green-600 text-white text-sm font-bold rounded-full transition-colors flex items-center gap-1"
                   >
-                    Detalhes
+                    <MessageCircle size={14} />
+                    Comprar Agora
                   </a>
                 </div>
               </div>

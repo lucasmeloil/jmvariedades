@@ -6,6 +6,7 @@ import About from "@/components/Sections/About";
 import Contact from "@/components/Sections/Contact";
 import Footer from "@/components/Footer";
 import MobileMenu from "@/components/MobileMenu";
+import WhatsAppButton from "@/components/WhatsAppButton";
 
 export default function Home() {
   return (
@@ -18,6 +19,7 @@ export default function Home() {
       <Contact />
       <Footer />
       <MobileMenu />
+      <WhatsAppButton />
     </main>
   );
 }
