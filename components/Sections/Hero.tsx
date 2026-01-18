@@ -25,7 +25,6 @@ export default function Hero() {
   };
 
   return (
-  return (
     <section className="relative min-h-[100vh] flex items-center overflow-hidden bg-slate-900">
       {/* Background Slides - Pre-rendered for instant switching */}
       <div className="absolute inset-0 z-0">
