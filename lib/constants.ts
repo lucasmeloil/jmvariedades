@@ -75,7 +75,7 @@ export const SITE_CONFIG = {
 export const HERO_SLIDES = [
   {
     id: 1,
-    image: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=80&w=2073&auto=format&fit=crop",
+    image: "https://images.unsplash.com/photo-1588691653147-9195b0451acc?q=80&w=2070&auto=format&fit=crop", // View reminiscent of Arraial d'Ajuda
     title: "Verão em Arraial d'Ajuda",
     subtitle: "Tudo o que você precisa para curtir a praia",
   },

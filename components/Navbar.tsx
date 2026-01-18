@@ -54,21 +54,24 @@ export default function Navbar() {
               key={link.path}
               href={link.path}
               className={clsx(
-                "font-medium transition-colors hover:text-accent",
-                pathname === link.path ? "text-primary" : "text-foreground/80"
+                "relative font-medium transition-colors hover:text-blue-500 group py-1",
+                pathname === link.path ? "text-blue-600" : "text-slate-700"
               )}
             >
               {link.label}
+              <span className="absolute bottom-0 left-0 w-full h-0.5 bg-blue-500 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
             </Link>
           ))}
-          <a
+          <motion.a
             href={SITE_CONFIG.sections.hero.cta.path}
             target="_blank"
             rel="noopener noreferrer"
-            className="bg-primary text-white px-5 py-2 rounded-full font-medium hover:bg-primary/90 transition-colors shadow-lg hover:shadow-xl hover:-translate-y-0.5 transform duration-200"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            className="bg-gradient-to-r from-blue-600 to-cyan-500 text-white px-6 py-2.5 rounded-full font-bold hover:shadow-lg hover:shadow-blue-500/30 transition-all shadow-md flex items-center gap-2"
           >
             Fale Conosco
-          </a>
+          </motion.a>
         </nav>
 
         {/* Mobile Menu Button */}
